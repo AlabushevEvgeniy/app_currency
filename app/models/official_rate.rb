@@ -1,4 +1,5 @@
 require 'rexml/document'
+require 'net/http'
 
 class OfficialRate < ApplicationRecord
   def self.update_rate
