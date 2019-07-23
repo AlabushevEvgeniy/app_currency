@@ -1,9 +1,9 @@
 
-<% if Rate.last.present? && Rate.last.date >= Date.today %>
+<% if CustomRate.last.present? && CustomRate.last.date >= Date.today %>
 	<h2>Форсированный курс</h2>
-	<%= @rate.custom_value %>
+	<%= @custom_rate.value %>
 	<h2>Срок действия, до:</h2>
-	<%= @rate.date %>
+	<%= @custom_rate.date %>
 <% else %>
 	<h2>Официальный курс доллара на сегодня</h2>
 	<%= @official_rate %>
