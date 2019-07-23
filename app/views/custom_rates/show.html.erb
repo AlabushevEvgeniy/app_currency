@@ -1,3 +1,5 @@
+<%= javascript_include_tag "refresh_page" %>
+<%= javascript_include_tag "refresh_every_3_sec" %>
 
 <% if CustomRate.last.present? && CustomRate.last.date >= Date.today %>
 	<h2>Форсированный курс</h2>
@@ -8,3 +10,4 @@
 	<h2>Официальный курс доллара на сегодня</h2>
 	<%= @official_rate %>
 <% end %>
+

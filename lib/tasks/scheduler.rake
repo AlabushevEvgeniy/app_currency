@@ -1,9 +1,5 @@
 desc "This task updates official rate and reload page"
 task :update_rate => :environment do
-  OfficialRate.update_rate
-  puts "done."
+  official_rate = OfficialRate.update_rate
+  OfficialRate.create!(value: official_rate)
 end
-
-# task :send_reminders => :environment do
-#   User.send_reminders
-# end

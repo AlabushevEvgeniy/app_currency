@@ -2,6 +2,9 @@ require 'rexml/document'
 require 'net/http'
 
 class OfficialRate < ApplicationRecord
+  validates :value, presence: true
+  validates :created_at, null: false
+
   def self.update_rate
     value = nil
     address = 'http://www.cbr.ru/scripts/XML_daily.asp'.freeze
@@ -15,6 +18,6 @@ class OfficialRate < ApplicationRecord
       # @name = currency_tag.get_text('Name')
       value = currency_tag.get_text('Value')
     end
-    value
+    value.to_s.gsub(',', '.').to_f.round(4)
   end
 end
