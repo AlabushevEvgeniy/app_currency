@@ -1,7 +1,8 @@
-class CourseEntry < ApplicationRecord
-  validates :value, :date, presence: true
+require 'rexml/document'
 
-  def self.update_course
+class OfficialRate < ApplicationRecord
+  def self.update_rate
+    value = nil
     address = 'http://www.cbr.ru/scripts/XML_daily.asp'.freeze
 
     # Достаем данные с сайта Центробанка и записываем их в XML
@@ -10,8 +11,9 @@ class CourseEntry < ApplicationRecord
 
     doc.each_element('//Valute[@ID="R01235"]') do |currency_tag|
       # Достаём название валюты и курс
-      @name = currency_tag.get_text('Name')
-      @value = currency_tag.get_text('Value')
+      # @name = currency_tag.get_text('Name')
+      value = currency_tag.get_text('Value')
     end
+    value
   end
 end
