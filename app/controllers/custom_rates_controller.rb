@@ -15,9 +15,10 @@ class CustomRatesController < ApplicationController
   def show
       @custom_rate = CustomRate.last if CustomRate.last.present?
 
-      @official_rate = OfficialRate.update_rate
+      # @official_rate = OfficialRate.update_rate
+      @official_rate = OfficialRate.last.value if OfficialRate.last.present?
       # new_off_rate = OfficialRate.new(value: @official_rate)
-      # new_off_rate.save! unless OfficialRate.find_by(created_at: new_off_rate.created_at.hour)
+      # new_off_rate.save! #unless OfficialRate.find_by(created_at: new_off_rate.created_at.hour)
   end
 
   def rate_params
